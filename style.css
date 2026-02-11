@@ -102,6 +102,10 @@ nav {
     align-items: center;
 }
 
+.mobile-only {
+    display: none;
+}
+
 .nav-links a {
     text-decoration: none;
     color: var(--text-muted);
@@ -964,36 +968,132 @@ footer {
 
 /* Mobile Responsive */
 @media (max-width: 992px) {
+
+    .nav-links:not(.active),
+    .nav-right>.btn {
+        display: none;
+    }
+
+    .nav-right {
+        display: block;
+        /* Ensure container is visible for the toggle if needed, or keep as is */
+    }
+
+    .menu-toggle {
+        display: block;
+        font-size: 1.5rem;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hero .container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 4rem;
+    }
+
     .hero h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     .about-grid,
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-    }
-
+    .contact-wrapper,
     .footer-content {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
 
-    .nav-links {
-        display: none;
+    .hero-content {
+        max-width: 100%;
+        order: 1;
     }
 
-    .menu-toggle {
+    .hero-image {
+        order: 2;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    /* Mobile Menu Styles */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(15, 23, 42, 0.98);
+        backdrop-filter: blur(20px);
+        display: none;
+        /* Controlled by JS */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        z-index: 1000;
+        list-style: none;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links.active .mobile-only {
         display: block;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: white;
+    }
+
+    .nav-links .btn {
+        margin-top: 1rem;
     }
 }
 
 @media (max-width: 768px) {
-    .whatsapp-float span {
+    .hero {
+        padding: 8rem 0 4rem;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .wa-menu {
+        width: 90vw;
+        right: -10px;
+        bottom: 80px;
+    }
+
+    .wa-toggle {
+        padding: 10px 20px;
+    }
+
+    .wa-toggle span {
         display: none;
     }
 
-    .whatsapp-float {
-        padding: 15px;
+    .contact-info {
+        padding: 2rem;
+    }
+
+    .branch-info {
+        margin: 1.5rem 0 !important;
     }
 }
 

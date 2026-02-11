@@ -12,9 +12,30 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Mobile Menu Toggle (Simplified for now)
+    // Mobile Menu Toggle
+    const navLinks = document.querySelector('.nav-links');
+    const menuToggleIcon = mobileMenuToggle.querySelector('i');
+
     mobileMenuToggle.addEventListener('click', () => {
-        alert('Mobile menu clicked! In a full implementation, this would open a sidebar.');
+        navLinks.classList.toggle('active');
+        const isActive = navLinks.classList.contains('active');
+
+        // Switch Lucide icon
+        if (isActive) {
+            menuToggleIcon.setAttribute('data-lucide', 'x');
+        } else {
+            menuToggleIcon.setAttribute('data-lucide', 'menu');
+        }
+        if (window.lucide) window.lucide.createIcons();
+    });
+
+    // Close mobile menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            menuToggleIcon.setAttribute('data-lucide', 'menu');
+            if (window.lucide) window.lucide.createIcons();
+        });
     });
 
     // Form Submission Handling
